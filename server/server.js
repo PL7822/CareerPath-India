@@ -16,7 +16,7 @@ const app = express();
 // =======================
 
 app.use(cors({
-  origin: "http://localhost:8080",
+  origin: "https://careerpath-india.onrender.com",
   credentials: true
 }));
 

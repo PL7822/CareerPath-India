@@ -27,7 +27,7 @@ export default function Login() {
       setError("");
 
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "https://careerpath-india.onrender.com",
         {
           email: email.trim(),
           password: password.trim(),
