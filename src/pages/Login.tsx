@@ -27,7 +27,7 @@ export default function Login() {
     try {
       setLoading(true);
       setError("");
-
+ 
       const res = await axios.post(
         `${API}/api/auth/login`,
         {
