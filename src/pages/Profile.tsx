@@ -21,7 +21,7 @@ export default function Profile() {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          "http://localhost:5000/api/auth/profile",
+          "https://careerpath-india.onrender.com",
           {
             headers: {
               Authorization: `Bearer ${token}`,

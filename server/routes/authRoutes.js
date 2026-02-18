@@ -8,7 +8,7 @@ app.get("/api/auth/google",
 app.get("/api/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect("https://careerpath-india-1.onrender.com");
+    res.redirect("https://careerpath-india.onrender.com");
   }
 );
 
