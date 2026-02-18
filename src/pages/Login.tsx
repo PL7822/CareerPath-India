@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
-const API = "https://careerpath-india.onrender.com";
+const API = "https://careerpath-india-1.onrender.com";
 
 export default function Login() {
   const navigate = useNavigate();
