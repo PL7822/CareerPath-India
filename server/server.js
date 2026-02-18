@@ -11,36 +11,52 @@ const User = require("./models/User");
 
 const app = express();
 
-// =======================
-// Middlewares
-// =======================
+/* =========================
+   CORS CONFIG (FIXED)
+========================= */
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://careerpath-india.netlify.app"
+];
 
 app.use(cors({
-  origin: "https://careerpath-india.onrender.com",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
 
+// 🔥 Important for preflight requests
+app.options("*", cors());
+
 app.use(express.json());
 
-// =======================
-// MongoDB Connection
-// =======================
+/* =========================
+   MongoDB Connection
+========================= */
 
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
+  .then(() => console.log("MongoDB Connected ✅"))
   .catch(err => console.log("Mongo Error:", err));
 
-// =======================
-// Test Route
-// =======================
+/* =========================
+   Test Route
+========================= */
 
 app.get("/", (req, res) => {
-  res.send("Server Running");
+  res.send("Server Running 🚀");
 });
 
-// =======================
-// SIGNUP
-// =======================
+/* =========================
+   SIGNUP
+========================= */
 
 app.post("/api/auth/signup", async (req, res) => {
   try {
@@ -63,7 +79,7 @@ app.post("/api/auth/signup", async (req, res) => {
       password: hashedPassword
     });
 
-    // Send Welcome Email
+    /* Email Sender */
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -78,62 +94,25 @@ app.post("/api/auth/signup", async (req, res) => {
         to: email,
         subject: "Welcome to CareerPath India 🎉",
         html: `
-    <div style="margin:0;padding:0;background:#f4f6f9;font-family:Arial,sans-serif;">
-      <table width="100%" cellpadding="0" cellspacing="0">
-        <tr>
-          <td align="center" style="padding:40px 0;">
-            <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,0.1);">
-              
-              <tr>
-                <td style="background:#2563eb;color:white;padding:20px;text-align:center;">
-                  <h1 style="margin:0;">CareerPath India 🚀</h1>
-                </td>
-              </tr>
-
-              <tr>
-                <td style="padding:30px;">
-                  <h2 style="color:#333;">Welcome ${name} 🎉</h2>
-                  <p style="color:#555;font-size:15px;line-height:1.6;">
-                    Thank you for signing up with CareerPath India.
-                    We're excited to guide your career journey.
-                  </p>
-
-                  <div style="text-align:center;margin:30px 0;">
-                    <a href="http://localhost:8080"
-                      style="background:#2563eb;color:#ffffff;
-                      padding:12px 24px;
-                      text-decoration:none;
-                      border-radius:8px;
-                      font-weight:bold;">
-                      Explore Career Options
-                    </a>
-                  </div>
-
-                  <p style="font-size:12px;color:#999;text-align:center;">
-                    © ${new Date().getFullYear()} CareerPath India | Built with ❤️ by Pritam All rights reserved.
-                  </p>
-                </td>
-              </tr>
-
-            </table>
-          </td>
-        </tr>
-      </table>
-    </div>
-    `
+        <div style="font-family:Arial">
+          <h2>Welcome ${name} 🎉</h2>
+          <p>Thank you for signing up.</p>
+          <a href="https://careerpath-india.netlify.app">
+            Visit Website
+          </a>
+        </div>
+        `
       });
     } catch (mailError) {
       console.log("Email Error:", mailError.message);
     }
-
 
     res.json({
       message: "Signup successful ✅",
       user: {
         _id: newUser._id,
         name: newUser.name,
-        email: newUser.email,
-        createdAt: newUser.createdAt
+        email: newUser.email
       }
     });
 
@@ -143,9 +122,9 @@ app.post("/api/auth/signup", async (req, res) => {
   }
 });
 
-// =======================
-// LOGIN
-// =======================
+/* =========================
+   LOGIN
+========================= */
 
 app.post("/api/auth/login", async (req, res) => {
   try {
@@ -157,7 +136,6 @@ app.post("/api/auth/login", async (req, res) => {
       return res.status(400).json({ message: "User not found" });
     }
 
-    // ✅ Correct password compare
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
@@ -176,8 +154,7 @@ app.post("/api/auth/login", async (req, res) => {
       user: {
         _id: user._id,
         name: user.name,
-        email: user.email,
-        createdAt: user.createdAt
+        email: user.email
       }
     });
 
@@ -187,9 +164,9 @@ app.post("/api/auth/login", async (req, res) => {
   }
 });
 
-// =======================
-// PROFILE (Protected)
-// =======================
+/* =========================
+   PROFILE (Protected)
+========================= */
 
 app.get("/api/auth/profile", async (req, res) => {
   try {
@@ -216,12 +193,12 @@ app.get("/api/auth/profile", async (req, res) => {
   }
 });
 
-// =======================
-// Server Start
-// =======================
+/* =========================
+   SERVER START
+========================= */
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT} 🚀`);
 });
