@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
+const API = "https://careerpath-india.onrender.com";
+
 export default function Signup() {
   const navigate = useNavigate();
 
@@ -30,25 +32,23 @@ export default function Signup() {
       setError("");
 
       const res = await axios.post(
-        "https://careerpath-india.onrender.com",
+        `${API}/api/auth/signup`,
         {
-          name,
-          email,
-          password,
+          name: name.trim(),
+          email: email.trim(),
+          password: password.trim(),
         }
       );
 
-      console.log(res.data);
-
       localStorage.setItem("user", JSON.stringify(res.data.user));
-      navigate("/profile");
 
+      navigate("/profile");
 
     } catch (err: any) {
       if (err.response?.data?.message) {
         setError(err.response.data.message);
       } else {
-        setError("Something went wrong");
+        setError("Signup failed");
       }
     } finally {
       setLoading(false);
@@ -104,16 +104,11 @@ export default function Signup() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition"
+            className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
           >
             {loading ? "Creating..." : "Signup"}
           </button>
-          {/* <button
-          onClick={() => window.open("http://localhost:5000/api/auth/google", "_self")}
-          className="w-full bg-green-600 text-white p-3 rounded-lg hover:bg-pink-300 transition"
-        >
-          Login with Google
-        </button> */}
+
         </form>
 
         <p className="text-sm text-center mt-4">
@@ -122,6 +117,7 @@ export default function Signup() {
             Login
           </Link>
         </p>
+
       </div>
     </div>
   );

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
+const API = "https://careerpath-india.onrender.com";
+
 export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,14 +29,13 @@ export default function Login() {
       setError("");
 
       const res = await axios.post(
-        "https://careerpath-india.onrender.com",
+        `${API}/api/auth/login`,
         {
           email: email.trim(),
           password: password.trim(),
         }
       );
 
-      // ✅ Save token & user
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
