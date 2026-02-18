@@ -75,32 +75,32 @@ app.post("/api/auth/signup", async (req, res) => {
     });
 
     /* Email Sender */
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
+    // const transporter = nodemailer.createTransport({
+    //   service: "gmail",
+    //   auth: {
+    //     user: process.env.EMAIL_USER,
+    //     pass: process.env.EMAIL_PASS
+    //   }
+    // });
 
-    try {
-      await transporter.sendMail({
-        from: `"CareerPath India 🚀" <${process.env.EMAIL_USER}>`,
-        to: email,
-        subject: "Welcome to CareerPath India 🎉",
-        html: `
-        <div style="font-family:Arial">
-          <h2>Welcome ${name} 🎉</h2>
-          <p>Thank you for signing up.</p>
-          <a href="https://careerpath-india.netlify.app">
-            Visit Website
-          </a>
-        </div>
-        `
-      });
-    } catch (mailError) {
-      console.log("Email Error:", mailError.message);
-    }
+    // try {
+    //   await transporter.sendMail({
+    //     from: `"CareerPath India 🚀" <${process.env.EMAIL_USER}>`,
+    //     to: email,
+    //     subject: "Welcome to CareerPath India 🎉",
+    //     html: `
+    //     <div style="font-family:Arial">
+    //       <h2>Welcome ${name} 🎉</h2>
+    //       <p>Thank you for signing up.</p>
+    //       <a href="https://careerpath-india.netlify.app">
+    //         Visit Website
+    //       </a>
+    //     </div>
+    //     `
+    //   });
+    // } catch (mailError) {
+    //   console.log("Email Error:", mailError.message);
+    // }
 
     res.json({
       message: "Signup successful ✅",
