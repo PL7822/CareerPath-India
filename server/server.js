@@ -17,7 +17,7 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://careerpath-india.netlify.app"
+  "https://career-path-india.vercel.app"
 ];
 
 app.use(cors({
@@ -92,7 +92,7 @@ app.post("/api/auth/signup", async (req, res) => {
         <div style="font-family:Arial">
           <h2>Welcome ${name} 🎉</h2>
           <p>Thank you for signing up.</p>
-          <a href="https://careerpath-india.netlify.app">
+          <a href="https://career-path-india.vercel.app">
             Visit Website
           </a>
         </div>
