@@ -91,27 +91,46 @@ app.post("/api/auth/signup", async (req, res) => {
     resend.emails.send({
       from: "CareerPath India <onboarding@resend.dev>",
       to: email,
-      subject: "Welcome to CareerPath India 🎉",
+      subject: "Welcome to CareerPath India 🚀",
       html: `
-        <div style="font-family:Arial;padding:30px;background:#f4f6f9">
-          <div style="max-width:500px;margin:auto;background:white;padding:20px;border-radius:10px">
-            <h2 style="color:#2563eb">Welcome ${name} 🚀</h2>
-            <p style="font-size:15px;color:#444">
-              Thank you for joining <strong>CareerPath India</strong>.
-            </p>
-            <div style="text-align:center;margin:20px 0">
-              <a href="https://career-path-india.vercel.app"
-                 style="background:#2563eb;color:white;padding:10px 20px;
-                        text-decoration:none;border-radius:6px">
-                Visit Website
-              </a>
-            </div>
-            <p style="font-size:13px;color:#888">
-              If you did not sign up, please ignore this email.
-            </p>
-          </div>
+  <div style="background:#f4f6f9;padding:40px;font-family:Arial">
+    <div style="max-width:600px;margin:auto;background:white;border-radius:12px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,0.1)">
+      
+      <div style="background:#2563eb;padding:20px;text-align:center">
+        <img src="https://your-logo-url.com/logo.png" width="120" />
+      </div>
+
+      <div style="padding:30px">
+        <h2 style="color:#2563eb">Welcome ${name} 🎉</h2>
+
+        <p style="font-size:15px;color:#444;line-height:1.6">
+          Thank you for joining <strong>CareerPath India</strong>.
+          We are excited to guide your career journey 🚀
+        </p>
+
+        <div style="text-align:center;margin:30px 0">
+          <a href="https://career-path-india.vercel.app"
+            style="background:#2563eb;color:white;
+                   padding:12px 25px;
+                   text-decoration:none;
+                   border-radius:8px;
+                   font-weight:bold;">
+            Explore Now
+          </a>
         </div>
-      `
+
+        <p style="font-size:13px;color:#888">
+          If you did not create this account, please ignore this email.
+        </p>
+      </div>
+
+      <div style="background:#f1f1f1;padding:15px;text-align:center;font-size:12px;color:#777">
+        © 2026 CareerPath India | Built with ❤️ by Pritam
+      </div>
+
+    </div>
+  </div>
+  `
     })
       .then(() => console.log("Email sent via Resend ✅"))
       .catch(err => console.log("Resend Error:", err.message));
