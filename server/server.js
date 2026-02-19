@@ -12,7 +12,7 @@ const User = require("./models/User");
 const app = express();
 
 /* =========================
-   CORS CONFIG (FIXED)
+   CORS CONFIG
 ========================= */
 
 const allowedOrigins = [
@@ -40,10 +40,10 @@ app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected ✅"))
-  .catch(err => console.log("Mongo Error:", err));
+  .catch(err => console.log("Mongo Error:", err.message));
 
 /* =========================
-   Test Route
+   TEST ROUTE
 ========================= */
 
 app.get("/", (req, res) => {
@@ -75,34 +75,7 @@ app.post("/api/auth/signup", async (req, res) => {
       password: hashedPassword
     });
 
-    /* Email Sender */
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
-
-    try {
-      await transporter.sendMail({
-        from: `"CareerPath India 🚀" <${process.env.EMAIL_USER}>`,
-        to: email,
-        subject: "Welcome to CareerPath India 🎉",
-        html: `
-        <div style="font-family:Arial">
-          <h2>Welcome ${name} 🎉</h2>
-          <p>Thank you for signing up.</p>
-          <a href="https://career-path-india.vercel.app">
-            Visit Website
-          </a>
-        </div>
-        `
-      });
-    } catch (mailError) {
-      console.log("Email Error:", mailError.message);
-    }
-
+    // 🔥 Send response immediately (fast signup)
     res.json({
       message: "Signup successful ✅",
       user: {
@@ -112,8 +85,32 @@ app.post("/api/auth/signup", async (req, res) => {
       }
     });
 
+    // 🔥 Send email in background
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    transporter.sendMail({
+      from: `"CareerPath India 🚀" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "Welcome to CareerPath India 🎉",
+      html: `
+        <div style="font-family:Arial">
+          <h2>Welcome ${name} 🎉</h2>
+          <p>Thank you for signing up.</p>
+          <a href="https://career-path-india.vercel.app">
+            Visit Website
+          </a>
+        </div>
+      `
+    }).catch(err => console.log("Email Error:", err.message));
+
   } catch (err) {
-    console.log("Signup Error:", err);
+    console.log("Signup Error:", err.message);
     res.status(500).json({ message: "Signup error" });
   }
 });
@@ -127,13 +124,11 @@ app.post("/api/auth/login", async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid password" });
     }
@@ -155,9 +150,8 @@ app.post("/api/auth/login", async (req, res) => {
       }
     });
 
-
   } catch (err) {
-    console.log("Login Error:", err);
+    console.log("Login Error:", err.message);
     res.status(500).json({ message: "Login error" });
   }
 });
@@ -175,11 +169,9 @@ app.get("/api/auth/profile", async (req, res) => {
     }
 
     const token = authHeader.split(" ")[1];
-
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     const user = await User.findById(decoded.id).select("-password");
-
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -195,10 +187,8 @@ app.get("/api/auth/profile", async (req, res) => {
    SERVER START
 ========================= */
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log("Server running on port " + PORT + " 🚀");
 });
-
-
