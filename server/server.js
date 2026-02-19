@@ -97,7 +97,7 @@ app.post("/api/auth/signup", async (req, res) => {
     <div style="max-width:600px;margin:auto;background:white;border-radius:12px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,0.1)">
       
       <div style="background:#2563eb;padding:20px;text-align:center">
-        <img src="https://your-logo-url.com/logo.png" width="120" />
+        <img src="https://cdn.phototourl.com/uploads/2026-02-19-0483396f-1f75-4f16-83db-dbc94a3940a9.png" width="120" />
       </div>
 
       <div style="padding:30px">
