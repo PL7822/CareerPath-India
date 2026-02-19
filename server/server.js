@@ -75,7 +75,7 @@ app.post("/api/auth/signup", async (req, res) => {
       password: hashedPassword
     });
 
-    // 🔥 Send response immediately (fast signup)
+    // ✅ Send response immediately
     res.json({
       message: "Signup successful ✅",
       user: {
@@ -85,22 +85,19 @@ app.post("/api/auth/signup", async (req, res) => {
       }
     });
 
-    // 🔥 Send email in background
-    transporter.sendMail({
-      from: `"CareerPath India 🚀" <${process.env.EMAIL_USER}>`,
-      to: email,
-      subject: "Welcome to CareerPath India 🎉",
-      html: `<h2>Welcome ${name}</h2>`
-    })
-      .then(info => {
-        console.log("Email sent:", info.response);
-      })
-      .catch(err => {
-        console.log("Email Error:", err.message);
-      });
+    // ✅ Setup transporter AFTER response
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      family: 4, // Force IPv4 (important for Render)
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
 
-
-
+    // ✅ Send email in background
     transporter.sendMail({
       from: `"CareerPath India 🚀" <${process.env.EMAIL_USER}>`,
       to: email,
@@ -114,7 +111,13 @@ app.post("/api/auth/signup", async (req, res) => {
           </a>
         </div>
       `
-    }).catch(err => console.log("Email Error:", err.message));
+    })
+    .then(info => {
+      console.log("Email sent:", info.response);
+    })
+    .catch(err => {
+      console.log("Email Error:", err.message);
+    });
 
   } catch (err) {
     console.log("Signup Error:", err.message);
@@ -164,7 +167,7 @@ app.post("/api/auth/login", async (req, res) => {
 });
 
 /* =========================
-   PROFILE (Protected)
+   PROFILE
 ========================= */
 
 app.get("/api/auth/profile", async (req, res) => {
@@ -179,6 +182,7 @@ app.get("/api/auth/profile", async (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     const user = await User.findById(decoded.id).select("-password");
+
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
