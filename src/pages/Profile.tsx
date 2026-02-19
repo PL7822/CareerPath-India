@@ -21,13 +21,14 @@ export default function Profile() {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          "https://careerpath-india.onrender.com",
+          "https://careerpath-india.onrender.com/api/auth/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
+
 
         setUser(res.data);
       } catch (err) {
