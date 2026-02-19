@@ -1,11 +1,13 @@
 require("dotenv").config();
 
+const { Resend } = require("resend");
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const nodemailer = require("nodemailer");
 
 const User = require("./models/User");
 
@@ -35,7 +37,7 @@ app.use(cors({
 app.use(express.json());
 
 /* =========================
-   MongoDB Connection
+   MongoDB
 ========================= */
 
 mongoose.connect(process.env.MONGO_URI)
@@ -75,7 +77,7 @@ app.post("/api/auth/signup", async (req, res) => {
       password: hashedPassword
     });
 
-    // ✅ Send response immediately
+    // ✅ Send response immediately (fast signup)
     res.json({
       message: "Signup successful ✅",
       user: {
@@ -85,45 +87,41 @@ app.post("/api/auth/signup", async (req, res) => {
       }
     });
 
-    // ✅ Setup transporter AFTER response
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      family: 4, // Force IPv4 (important for Render)
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
-
-    // ✅ Send email in background
-    transporter.sendMail({
-      from: `"CareerPath India 🚀" <${process.env.EMAIL_USER}>`,
+    // ✅ Send email in background (no await)
+    resend.emails.send({
+      from: "CareerPath India <onboarding@resend.dev>",
       to: email,
       subject: "Welcome to CareerPath India 🎉",
       html: `
-        <div style="font-family:Arial">
-          <h2>Welcome ${name} 🎉</h2>
-          <p>Thank you for signing up.</p>
-          <a href="https://career-path-india.vercel.app">
-            Visit Website
-          </a>
+        <div style="font-family:Arial;padding:30px;background:#f4f6f9">
+          <div style="max-width:500px;margin:auto;background:white;padding:20px;border-radius:10px">
+            <h2 style="color:#2563eb">Welcome ${name} 🚀</h2>
+            <p style="font-size:15px;color:#444">
+              Thank you for joining <strong>CareerPath India</strong>.
+            </p>
+            <div style="text-align:center;margin:20px 0">
+              <a href="https://career-path-india.vercel.app"
+                 style="background:#2563eb;color:white;padding:10px 20px;
+                        text-decoration:none;border-radius:6px">
+                Visit Website
+              </a>
+            </div>
+            <p style="font-size:13px;color:#888">
+              If you did not sign up, please ignore this email.
+            </p>
+          </div>
         </div>
       `
     })
-    .then(info => {
-      console.log("Email sent:", info.response);
-    })
-    .catch(err => {
-      console.log("Email Error:", err.message);
-    });
+      .then(() => console.log("Email sent via Resend ✅"))
+      .catch(err => console.log("Resend Error:", err.message));
 
   } catch (err) {
     console.log("Signup Error:", err.message);
     res.status(500).json({ message: "Signup error" });
   }
 });
+
 
 /* =========================
    LOGIN
