@@ -86,16 +86,19 @@ app.post("/api/auth/signup", async (req, res) => {
     });
 
     // 🔥 Send email in background
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      family: 4,   // 👈 IMPORTANT (force IPv4)
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
+    transporter.sendMail({
+      from: `"CareerPath India 🚀" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "Welcome to CareerPath India 🎉",
+      html: `<h2>Welcome ${name}</h2>`
+    })
+      .then(info => {
+        console.log("Email sent:", info.response);
+      })
+      .catch(err => {
+        console.log("Email Error:", err.message);
+      });
+
 
 
     transporter.sendMail({
