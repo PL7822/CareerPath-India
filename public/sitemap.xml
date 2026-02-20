@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Homepage -->
   <url>
     <loc>https://career-path-india.vercel.app/</loc>
     <priority>1.0</priority>
   </url>
 
+  <!-- Main Sections -->
   <url>
     <loc>https://career-path-india.vercel.app/careers</loc>
     <priority>0.9</priority>
@@ -19,6 +21,73 @@
   <url>
     <loc>https://career-path-india.vercel.app/blog</loc>
     <priority>0.8</priority>
+  </url>
+
+  <!-- After 10th -->
+  <url>
+    <loc>https://career-path-india.vercel.app/after/after-10th</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- After 12th Science -->
+  <url>
+    <loc>https://career-path-india.vercel.app/after/after-12th-science</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://career-path-india.vercel.app/after/after-12th-science/engineering</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://career-path-india.vercel.app/after/after-12th-science/medical</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://career-path-india.vercel.app/after/after-12th-science/it</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- After 12th Commerce -->
+  <url>
+    <loc>https://career-path-india.vercel.app/after/after-12th-commerce</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- After 12th Arts -->
+  <url>
+    <loc>https://career-path-india.vercel.app/after/after-12th-arts</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Government Jobs -->
+  <url>
+    <loc>https://career-path-india.vercel.app/government-jobs</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- IT Career Roadmap -->
+  <url>
+    <loc>https://career-path-india.vercel.app/it-career-roadmap</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Calculators -->
+  <url>
+    <loc>https://career-path-india.vercel.app/tools/percentage-calculator</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://career-path-india.vercel.app/tools/age-calculator</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://career-path-india.vercel.app/tools/emi-calculator</loc>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
