@@ -8,6 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import Layout from "@/components/Layout";
+// import Blog from "./Blog";
 import AdPlaceholder from "@/components/AdPlaceholder";
 
 const fadeUp = {
@@ -19,6 +20,13 @@ const fadeUp = {
 };
 
 const careerCategories = [
+  {
+    icon: Star,
+    title: "Single Career Roadmap ",
+    desc: " Mumbai Colleges | Complete Roadmaps | Web Dev ₹4-25L | Full Stack ₹9-24L | 4479 Jobs | Govt Exams | Projects | Freelance ₹800/hr | 50+ Companies Hiring",
+    to: "/Blog",
+    color: "text-primary"
+  },
   {
     icon: GraduationCap,
     title: "After 10th",
@@ -92,7 +100,7 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/90 via-primary/50 to-primary/80 py-20 md:py-28 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/hero-bg.jpg')`,  
+          backgroundImage: `url('/hero-bg.jpg')`,
         }}
       >
         {/* Dark Overlay for Text Readability */}
@@ -193,74 +201,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* Testimonials
-      <section className="py-16 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="mb-12 text-center">
-            <h2 className="font-display text-3xl font-bold text-foreground md:text-4xl">What Students Say</h2>
-            <p className="mt-3 text-muted-foreground">Real stories from students who found their career path</p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <motion.div key={t.name} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-                <Card className="h-full">
-                  <CardContent className="pt-6">
-                    <div className="mb-3 flex gap-1">
-                      {[...Array(5)].map((_, j) => (
-                        <Star key={j} className="h-4 w-4 fill-primary text-primary" />
-                      ))}
-                    </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">"{t.text}"</p>
-                    <div className="mt-4 border-t pt-4">
-                      <p className="text-sm font-semibold text-foreground">{t.name}</p>
-                      <p className="text-xs text-muted-foreground">{t.role}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-      {/* <AdPlaceholder className="container mx-auto mb-8 px-4" /> */}
-
-      {/* Affiliate Course Recommendations */}
-      {/* <section className="bg-muted/50 py-16 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="mb-12 text-center">
-            <h2 className="font-display text-3xl font-bold text-foreground md:text-4xl">Recommended Courses</h2>
-            <p className="mt-3 text-muted-foreground">Top-rated online courses to boost your career skills</p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {affiliateCourses.map((course, i) => (
-              <motion.div key={course.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-                <Card className="h-full">
-                  <CardHeader>
-                    <span className="mb-2 inline-block w-fit rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                      {course.tag}
-                    </span>
-                    <CardTitle className="text-base">{course.title}</CardTitle>
-                    <CardDescription>{course.provider}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-lg font-bold text-foreground">{course.price}</span>
-                      {course.originalPrice && (
-                        <span className="text-sm text-muted-foreground line-through">{course.originalPrice}</span>
-                      )}
-                    </div>
-                    <Button className="mt-4 w-full" variant="outline" size="sm">
-                      View Course <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section> */}
     </Layout>
   );
 };
