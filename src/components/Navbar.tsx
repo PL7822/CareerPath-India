@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, X, GraduationCap } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -17,7 +17,6 @@ const navLinks = [
   },
   { label: "Blog", to: "/blog" },
 ];
-
 
 interface UserType {
   name: string;
@@ -49,81 +48,115 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50 border-b bg-white shadow-sm">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+      <div className="flex h-14 items-center justify-between px-2 md:px-6">
 
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 text-xl font-bold text-blue-600">
-          <img src="/logo.png" alt="CareerPath India" className="h-10 w-10" />
-          CareerPath India
+        {/* LEFT - Logo */}
+        <Link
+          to="/"
+          className="flex items-center gap-2 font-semibold text-blue-600"
+        >
+          <img
+            src="/logo.png"
+            alt="CareerPath India"
+            className="h-7 w-7 md:h-9 md:w-9"
+          />
+          <span className="text-xs md:text-lg whitespace-nowrap">
+            CareerPath India
+          </span>
         </Link>
 
+        {/* RIGHT SIDE */}
+        <div className="flex items-center gap-2">
 
-        {/* Desktop Nav */}
-        <div className="hidden items-center gap-6 md:flex">
-          {navLinks.map((link, index) =>
-            link.dropdown ? (
-              <div key={index} className="relative group">
-                <span className="text-sm font-medium text-gray-600 hover:text-blue-600 cursor-pointer">
-                  {link.label}
-                </span>
-
-                <div className="absolute left-0 mt-2 w-56 bg-white border rounded shadow-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                  {link.dropdown.map((item) => (
-                    <Link
-                      key={item.to}
-                      to={item.to}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-6">
+            {navLinks.map((link, index) =>
+              link.dropdown ? (
+                <div key={index} className="relative group">
+                  <span className="text-sm font-medium text-gray-600 hover:text-blue-600 cursor-pointer">
+                    {link.label}
+                  </span>
+                  <div className="absolute left-0 mt-2 w-56 bg-white border rounded shadow-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                    {link.dropdown.map((item) => (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="text-sm font-medium text-gray-600 hover:text-blue-600"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
+
+            {!user ? (
+              <>
+                <Link to="/login">
+                  <Button variant="outline" size="sm">
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button size="sm">Signup</Button>
+                </Link>
+              </>
             ) : (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="text-sm font-medium text-gray-600 hover:text-blue-600"
-              >
-                {link.label}
-              </Link>
-            )
-          )}
+              <div className="flex items-center gap-3">
+                <Link to="/profile">
+                  <User className="h-6 w-6 text-blue-600 cursor-pointer" />
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="text-sm text-red-500 hover:underline"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
 
-
+          {/* MOBILE AUTH */}
           {!user ? (
             <>
-              <Link to="/login">
-                <Button variant="ghost" size="sm">
-                  Login
-                </Button>
+              <Link to="/login" className="text-xs font-medium text-blue-600 md:hidden">
+                Login
               </Link>
-              <Link to="/signup">
-                <Button size="sm">Signup</Button>
+              <Link to="/signup" className="text-xs font-medium text-blue-600 md:hidden">
+                Signup
               </Link>
             </>
           ) : (
-            <Link
-              to="/profile"
-              className="text-sm font-medium text-blue-600 hover:underline"
-            >
-              My Profile
+            <Link to="/profile" className="md:hidden">
+              <User className="h-5 w-5 text-blue-600" />
             </Link>
           )}
-        </div>
 
-        {/* Mobile Toggle */}
-        <div className="md:hidden">
-          <Button variant="ghost" size="icon" onClick={() => setMobileOpen(!mobileOpen)}>
+          {/* MOBILE MENU ICON (Always Last) */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden"
+          >
             {mobileOpen ? <X /> : <Menu />}
           </Button>
+
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Dropdown Menu */}
       {mobileOpen && (
         <div className="border-t bg-white p-4 md:hidden space-y-3">
-
           {navLinks.map((link, index) =>
             link.dropdown ? (
               <div key={index}>
@@ -151,51 +184,20 @@ const Navbar = () => {
             )
           )}
 
-
-          {!user ? (
-            <>
-              <Link
-                to="/login"
-                onClick={() => setMobileOpen(false)}
-                className="block text-sm font-medium"
-              >
-                Login
-              </Link>
-
-              <Link
-                to="/signup"
-                onClick={() => setMobileOpen(false)}
-                className="block text-sm font-medium"
-              >
-                Signup
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link
-                to="/profile"
-                onClick={() => setMobileOpen(false)}
-                className="block text-sm font-medium text-blue-600"
-              >
-                My Profile
-              </Link>
-
-
-              <button
-                onClick={() => {
-                  handleLogout();
-                  setMobileOpen(false);
-                }}
-                className="block text-sm font-medium text-red-500"
-              >
-                Logout
-              </button>
-            </>
+          {user && (
+            <Button
+              variant="destructive"
+              className="w-full"
+              onClick={() => {
+                handleLogout();
+                setMobileOpen(false);
+              }}
+            >
+              Logout
+            </Button>
           )}
         </div>
       )}
-      {/* <br />  */}
-      {/* <br /> */}
     </nav>
   );
 };

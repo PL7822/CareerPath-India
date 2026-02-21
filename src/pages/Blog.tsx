@@ -8,7 +8,7 @@ const generateBlogPosts = () => [
   {
     id: 1,
     slug:"best-career-options-after-10th",
-    title:  "Best Career Options After 10th (2026 Guide)",
+    title:  "“Best career after 12th science PCM for girls in India 2026”",
     date: "10 Feb 2026",
     excerpt: "Science, Commerce, Diploma, ITI - complete Mumbai roadmap with colleges & real salaries.",
     fullContent: (

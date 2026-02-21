@@ -100,7 +100,7 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/90 via-primary/50 to-primary/80 py-20 md:py-28 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/hero-bg.jpg')`,
+          backgroundImage: `url('/hero-bg.webp')`,
         }}
       >
         {/* Dark Overlay for Text Readability */}
