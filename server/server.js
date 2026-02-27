@@ -19,8 +19,8 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://career-path-india.vercel.app",
-  "https://careerpath-india.vercel.app"
+  "https://careerpathind.in",
+  "https://www.careerpathind.in",
 ];
 
 app.use(cors({
