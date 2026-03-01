@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Layout from "@/components/Layout";
 import { careerBranches } from "./data";
 import {
     Code2,
@@ -9,6 +10,7 @@ import {
     Network,
     Globe,
     Briefcase,
+    Search,
 } from "lucide-react";
 
 const iconMap: Record<string, any> = {
@@ -24,93 +26,149 @@ const iconMap: Record<string, any> = {
 
 const Roadmap = () => {
     const [search, setSearch] = useState("");
+    const [selectedBranch, setSelectedBranch] = useState("all");
 
-    const filteredBranches = careerBranches.filter((branch) =>
-        branch.title.toLowerCase().includes(search.toLowerCase())
-    );
+    const filteredBranches = careerBranches.filter((branch) => {
+        const matchesSearch = branch.title
+            .toLowerCase()
+            .includes(search.toLowerCase());
+
+        const matchesFilter =
+            selectedBranch === "all" || branch.id === selectedBranch;
+
+        return matchesSearch && matchesFilter;
+    });
 
     return (
-        <div className="min-h-screen bg-slate-50 p-6">
-            <div className="max-w-7xl mx-auto">
+        <Layout>
+            <div className="bg-slate-50">
 
-                {/* Title */}
-                <h1 className="text-4xl font-bold text-center mb-8">
-                    IT Career Roadmap
-                </h1>
+                {/* ================= HERO ================= */}
+                <section
+                    className="relative h-[40vh] flex items-center justify-center text-center bg-cover bg-center"
+                    style={{ backgroundImage: "url('/it-hero.jpg')" }}
+                >
+                    <div className="absolute inset-0 bg-blue-900/50"></div>
 
-                {/* Search */}
-                <div className="mb-10">
-                    <input
-                        type="text"
-                        placeholder="Search career domain..."
-                        className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
-                </div>
+                    <div className="relative z-10 px-4 text-white">
+                        <h1 className="text-5xl font-extrabold mb-6">
+                            IT Career Roadmap
+                        </h1>
+                        <p className="max-w-2xl mx-auto text-lg">
+                            Explore domains, required skills, salary insights &
+                            future opportunities in the tech industry.
+                        </p>
+                    </div>
+                </section>
 
-                {/* Branch Cards */}
-                <div className="space-y-10">
+                {/* ================= SEARCH + FILTER ================= */}
+                <section className="bg-white py-12 border-b border-slate-200">
+                    <div className="max-w-6xl mx-auto px-4">
+
+                        <div className="flex flex-col md:flex-row gap-6 justify-between items-center">
+
+                            {/* Search */}
+                            <div className="relative w-full md:w-1/2">
+                                <Search className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
+                                <input
+                                    type="text"
+                                    placeholder="Search career domain..."
+                                    className="w-full pl-12 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-300 
+                             focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
+                                />
+                            </div>
+
+                            {/* Filter */}
+                            <select
+                                className="w-full md:w-1/3 py-3 px-4 rounded-xl bg-slate-50 border border-slate-300 
+                           focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                                value={selectedBranch}
+                                onChange={(e) => setSelectedBranch(e.target.value)}
+                            >
+                                <option value="all">All Categories</option>
+                                {careerBranches.map((branch) => (
+                                    <option key={branch.id} value={branch.id}>
+                                        {branch.title}
+                                    </option>
+                                ))}
+                            </select>
+
+                        </div>
+
+                    </div>
+                </section>
+
+                {/* ================= CONTENT ================= */}
+                <div className="max-w-6xl mx-auto px-4 py-20 space-y-16">
+
                     {filteredBranches.map((branch) => {
                         const IconComponent = iconMap[branch.icon];
 
                         return (
                             <div
                                 key={branch.id}
-                                className="bg-white rounded-xl shadow-md p-6"
+                                className="bg-white rounded-3xl border border-slate-200 p-8 hover:shadow-lg transition"
                             >
                                 {/* Branch Header */}
-                                <div className="flex items-center gap-4 mb-4">
+                                <div className="flex items-center gap-5 mb-8">
                                     {IconComponent && (
-                                        <IconComponent className="w-8 h-8 text-blue-600" />
+                                        <div className="bg-blue-100 p-4 rounded-2xl">
+                                            <IconComponent className="w-8 h-8 text-blue-600" />
+                                        </div>
                                     )}
                                     <div>
-                                        <h2 className="text-2xl font-semibold">
+                                        <h2 className="text-3xl font-bold text-slate-800">
                                             {branch.title}
                                         </h2>
-                                        <p className="text-gray-600 text-sm">
+                                        <p className="text-slate-500 mt-1">
                                             {branch.description}
                                         </p>
                                     </div>
                                 </div>
 
-                                {/* SubBranches */}
-                                <div className="grid md:grid-cols-2 gap-6 mt-6">
+                                {/* Sub Cards */}
+                                <div className="grid md:grid-cols-2 gap-8">
                                     {branch.subBranches.map((sub, index) => (
                                         <div
                                             key={index}
-                                            className="border rounded-lg p-4 hover:shadow-md transition"
+                                            className="bg-slate-50 rounded-2xl p-6 border border-slate-200 
+                                 hover:shadow-md hover:-translate-y-1 
+                                 transition-all duration-300"
                                         >
-                                            <h3 className="text-lg font-semibold mb-2 text-black">
+                                            <h3 className="text-xl font-semibold text-slate-800 mb-3">
                                                 {sub.title}
                                             </h3>
 
-                                            <p className="text-sm text-gray-600 mb-2">
+                                            <p className="text-sm text-slate-600 mb-3">
                                                 {sub.description}
                                             </p>
 
-                                            <p className="text-sm font-medium text-green-600 mb-2">
-                                                Salary: {sub.salary}
+                                            <p className="text-sm font-semibold text-green-600 mb-2">
+                                                💰 {sub.salary}
                                             </p>
 
-                                            <p className="text-sm text-gray-700 mb-2">
-                                                <strong>Skills:</strong>{" "}
+                                            <p className="text-sm text-slate-700 mb-2">
+                                                <span className="font-semibold">Skills:</span>{" "}
                                                 {sub.skills.join(", ")}
                                             </p>
 
-                                            <p className="text-sm text-gray-500">
+                                            <p className="text-sm text-slate-500">
                                                 {sub.prospects}
                                             </p>
                                         </div>
                                     ))}
                                 </div>
+
                             </div>
                         );
                     })}
+
                 </div>
 
             </div>
-        </div>
+        </Layout>
     );
 };
 

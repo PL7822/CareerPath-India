@@ -67,7 +67,6 @@ const App = () => (
                 }
               />
 
-
               <Route
                 path="/after-12th-commerce/*"
                 element={
