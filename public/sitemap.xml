@@ -1,125 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Home -->
-  <url>
-    <loc>https://career-path-india.vercel.app/</loc>
-    <lastmod>2026-02-27</lastmod>
-    <priority>1.0</priority>
-  </url>
+<!-- Home -->
 
-  <!-- Main Pages -->
-  <url>
-    <loc>https://career-path-india.vercel.app/blog</loc>
-    <lastmod>2026-02-27</lastmod>
-    <priority>0.9</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>1.0</priority>
+</url>
 
-  <url>
-    <loc>https://career-path-india.vercel.app/government-jobs</loc>
-    <lastmod>2026-02-27</lastmod>
-    <priority>0.9</priority>
-  </url>
+<!-- Main Pages -->
 
-  <url>
-    <loc>https://career-path-india.vercel.app/it-career-roadmap</loc>
-    <lastmod>2026-02-27</lastmod>
-    <priority>0.9</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/blog</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.9</priority>
+</url>
 
-  <!-- Tools -->
-  <url>
-    <loc>https://career-path-india.vercel.app/age-calculator</loc>
-    <lastmod>2026-02-27</lastmod>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/government-jobs</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.9</priority>
+</url>
 
-  <url>
-    <loc>https://career-path-india.vercel.app/cgpa-to-percentage</loc>
-    <lastmod>2026-02-27</lastmod>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/it-career-roadmap</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.9</priority>
+</url>
 
-  <url>
-    <loc>https://career-path-india.vercel.app/percentage-calculator</loc>
-    <lastmod>2026-02-27</lastmod>
-    <priority>0.8</priority>
-  </url>
+<!-- Tools -->
 
-  <url>
-    <loc>https://career-path-india.vercel.app/salary-calculator</loc>
-    <lastmod>2026-02-27</lastmod>
-    <priority>0.8</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/age-calculator</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.8</priority>
+</url>
 
-  <!-- After 10th -->
-  <url>
-    <loc>https://career-path-india.vercel.app/after/after-10th</loc>
-    <lastmod>2026-02-27</lastmod>
-    <priority>0.9</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/cgpa-to-percentage</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.8</priority>
+</url>
 
-  <url>
-    <loc>https://career-path-india.vercel.app/after/after-10th/diploma</loc>
-    <priority>0.7</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/percentage-calculator</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.8</priority>
+</url>
 
-  <url>
-    <loc>https://career-path-india.vercel.app/after/after-10th/iti</loc>
-    <priority>0.7</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/salary-calculator</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.8</priority>
+</url>
 
-  <url>
-    <loc>https://career-path-india.vercel.app/after/after-10th/government-jobs</loc>
-    <priority>0.7</priority>
-  </url>
+<!-- After 10th -->
 
-  <url>
-    <loc>https://career-path-india.vercel.app/after/after-10th/skills</loc>
-    <priority>0.7</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/after/after-10th</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.9</priority>
+</url>
 
-  <url>
-    <loc>https://career-path-india.vercel.app/after/after-10th/stream</loc>
-    <priority>0.7</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/after/after-10th/diploma</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.7</priority>
+</url>
 
-  <!-- After 12th Science -->
-  <url>
-    <loc>https://career-path-india.vercel.app/after/after-12th-science</loc>
-    <priority>0.9</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/after/after-10th/iti</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.7</priority>
+</url>
 
-  <url>
-    <loc>https://career-path-india.vercel.app/after/after-12th-science/bsc</loc>
-    <priority>0.7</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/after/after-10th/government-jobs</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.7</priority>
+</url>
 
-  <url>
-    <loc>https://career-path-india.vercel.app/after/after-12th-science/engineering</loc>
-    <priority>0.7</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/after/after-10th/skills</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.7</priority>
+</url>
 
-  <url>
-    <loc>https://career-path-india.vercel.app/after/after-12th-science/medical</loc>
-    <priority>0.7</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/after/after-10th/stream</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.7</priority>
+</url>
 
-  <url>
-    <loc>https://career-path-india.vercel.app/after/after-12th-science/government</loc>
-    <priority>0.7</priority>
-  </url>
+<!-- After 12th Science -->
 
-  <!-- After 12th Commerce -->
-  <url>
-    <loc>https://career-path-india.vercel.app/after/after-12th-commerce</loc>
-    <priority>0.9</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/after/after-12th-science</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.9</priority>
+</url>
 
-  <!-- After 12th Arts -->
-  <url>
-    <loc>https://career-path-india.vercel.app/after/after-12th-arts</loc>
-    <priority>0.9</priority>
-  </url>
+<url>
+<loc>https://www.careerpathind.in/after/after-12th-science/bsc</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.7</priority>
+</url>
+
+<url>
+<loc>https://www.careerpathind.in/after/after-12th-science/engineering</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.7</priority>
+</url>
+
+<url>
+<loc>https://www.careerpathind.in/after/after-12th-science/medical</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.7</priority>
+</url>
+
+<url>
+<loc>https://www.careerpathind.in/after/after-12th-science/government</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.7</priority>
+</url>
+
+<!-- After 12th Commerce -->
+
+<url>
+<loc>https://www.careerpathind.in/after/after-12th-commerce</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.9</priority>
+</url>
+
+<!-- After 12th Arts -->
+
+<url>
+<loc>https://www.careerpathind.in/after/after-12th-arts</loc>
+<lastmod>2026-03-06</lastmod>
+<priority>0.9</priority>
+</url>
 
 </urlset>
