@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://career-path-india.vercel.app/sitemap.xml
+Sitemap: https://www.careerpathind.in/sitemap.xml
